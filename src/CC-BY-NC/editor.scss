@@ -5,8 +5,17 @@
  * which makes it higher in priority.
  */
 
-.wp-block-cgb-cc-by-nc {
-	margin: 0 auto;
-	max-width: 740px;
-	padding: 1rem;
+.wp-block-cc-cc-by-nc {
+    margin: 0 auto;
+    max-width: 740px;
+    padding: 1rem;
+
+    // Additional editor-specific styles can be added here
+    .cc-c-richtext-input {
+        margin-bottom: 1rem;
+    }
+
+    h4 {
+        margin-bottom: 0.5rem;
+    }
 }

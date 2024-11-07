@@ -3,24 +3,24 @@ import './editor.scss';
 import globals from 'cgbGlobal';
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
-const { InspectorControls, PanelColorSettings } = wp.blockEditor; // Import color settings from wp.editor
-const { RichText } = wp.blockEditor; // Import RichText blocks from wp.editor
+const { InspectorControls, PanelColorSettings } = wp.blockEditor; // Import color settings from wp.blockEditor
+const { RichText } = wp.blockEditor; // Import RichText from wp.blockEditor
 
 /**
  * Register: CC0 Gutenberg block.
  *
  * Registers a new block provided a unique name and an object defining its
- * behavior. Once registered, the block is made editor as an option to any
+ * behavior. Once registered, the block is available as an option in any
  * editor interface where blocks are implemented.
  *
- * @link https://wordpress.org/gutenberg/handbook/block-api/
+ * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/
  * @param  {string}   name     Block name.
  * @param  {Object}   settings Block settings.
  * @return {?WPBlock}          The block, if it has been successfully
  *                             registered; otherwise `undefined`.
  */
-registerBlockType('cgb/cc0', {
-	title: __('CC0'),
+registerBlockType('cc/cc0', { // Updated namespace to "cc"
+	title: __('CC0', 'creativecommons'),
 	icon: 'media-text',
 	category: 'cc-licenses',
 	keywords: [__('creative commons'), __('cc0'), __('attribution')],
@@ -34,11 +34,11 @@ registerBlockType('cgb/cc0', {
 			default: 'black',
 		},
 		contentName: {
-			selector: '.cc-cgb-name',
+			selector: '.cc-name', // Updated CSS class
 			source: 'children',
 		},
 		contentText: {
-			selector: '.cc-cgb-text',
+			selector: '.cc-text', // Updated CSS class
 			source: 'children',
 		},
 	},
@@ -49,23 +49,15 @@ registerBlockType('cgb/cc0', {
 	 *
 	 * The "edit" property must be a valid function.
 	 *
-	 * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/
 	 * @param {Object} props Props.
 	 * @returns {Mixed} JSX Component.
 	 */
 	edit: function (props) {
-		const bgColor = props.attributes.bgColor;
-		const txtColor = props.attributes.txtColor;
-		const contentName = props.attributes.contentName;
-		const contentText = props.attributes.contentText;
-		const { attributes: className, setAttributes } = props;
+		const { attributes: { bgColor, txtColor, contentName, contentText }, setAttributes, className } = props;
 
-		const onChangeContentName = contentName => {
-			setAttributes({ contentName });
-		};
-		const onChangeContentText = contentText => {
-			setAttributes({ contentText });
-		};
+		const onChangeContentName = contentName => setAttributes({ contentName });
+		const onChangeContentText = contentText => setAttributes({ contentText });
 
 		return [
 			<InspectorControls key="3">
@@ -73,21 +65,21 @@ registerBlockType('cgb/cc0', {
 					title={__('Color Settings', 'creativecommons')}
 					colorSettings={[
 						{
-							label: __('Background Color'),
+							label: __('Background Color', 'creativecommons'),
 							value: bgColor,
-							onChange: colorValue => props.setAttributes({ bgColor: colorValue }),
+							onChange: (colorValue) => setAttributes({ bgColor: colorValue }),
 						},
 						{
-							label: __('Text Color'),
+							label: __('Text Color', 'creativecommons'),
 							value: txtColor,
-							onChange: colorValue => props.setAttributes({ txtColor: colorValue }),
+							onChange: (colorValue) => setAttributes({ txtColor: colorValue }),
 						},
 					]}
 				/>
 			</InspectorControls>,
 
 			<div key="2" className={className} style={{ backgroundColor: bgColor, color: txtColor }}>
-				<img src={`${globals.pluginDirUrl}includes/images/cc0.png`} alt="cc0" />
+				<img src={`${globals.pluginDirUrl}includes/images/cc0.png`} alt="CC0" />
 				<p>
 					This content is licensed by{' '}
 					<a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="license">
@@ -98,10 +90,9 @@ registerBlockType('cgb/cc0', {
 				<span>
 					Attribution name <i>(default: This content)</i>:
 				</span>
-				<div className="cc-cgb-richtext-input">
+				<div className="cc-richtext-input">
 					<RichText
-						className={className}
-						placeholder={__('This content', 'CreativeCommons')}
+						placeholder={__('This content', 'creativecommons')}
 						keepPlaceholderOnFocus={true}
 						onChange={onChangeContentName}
 						value={contentName}
@@ -110,10 +101,9 @@ registerBlockType('cgb/cc0', {
 				<span>
 					Additional text <i>(optional)</i>:
 				</span>
-				<div className="cc-cgb-richtext-input">
+				<div className="cc-richtext-input">
 					<RichText
-						className={className}
-						placeholder={__('Custom text/description/links ', 'CreativeCommons')}
+						placeholder={__('Custom text/description/links', 'creativecommons')}
 						keepPlaceholderOnFocus={true}
 						onChange={onChangeContentText}
 						value={contentText}
@@ -124,33 +114,25 @@ registerBlockType('cgb/cc0', {
 	},
 
 	/**
-	 * The save function defines the way in which the different attributes should be combined
-	 * into the final markup, which is then serialized by Gutenberg into post_content.
+	 * The save function defines how the block's attributes should be combined
+	 * into the final markup, which Gutenberg serializes into post_content.
 	 *
-	 * The "save" property must be specified and must be a valid function.
-	 *
-	 * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/
 	 * @param {Object} props Props.
 	 * @returns {Mixed} JSX Frontend HTML.
 	 */
 	save: function (props) {
-		const bgColor = props.attributes.bgColor;
-		const txtColor = props.attributes.txtColor;
-		let contentName = props.attributes.contentName;
-		const contentText = props.attributes.contentText;
+		const { bgColor, txtColor, contentName = 'This content', contentText } = props.attributes;
 
-		if (contentName == '') {
-			contentName = 'This content'; // Default to "This Content".
-		}
 		return (
-			<div className="message-body" style={{ backgroundColor: bgColor, color: txtColor }}>
-				<img src={`${globals.pluginDirUrl}includes/images/cc0.png`} alt="CC" />
+			<div className="cc-message-body" style={{ backgroundColor: bgColor, color: txtColor }}>
+				<img src={`${globals.pluginDirUrl}includes/images/cc0.png`} alt="CC0" />
 				<p>
-					<span className="cc-cgb-name">{contentName}</span> is licensed under a{' '}
+					<span className="cc-name">{contentName}</span> is licensed under a{' '}
 					<a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="license">
 						Creative Commons CC0 Universal Public Domain Dedication license.
 					</a>{' '}
-					<span className="cc-cgb-text">{contentText}</span>
+					<span className="cc-text">{contentText}</span>
 				</p>
 			</div>
 		);

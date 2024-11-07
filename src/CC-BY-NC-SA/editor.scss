@@ -5,8 +5,31 @@
  * which makes it higher in priority.
  */
 
-.wp-block-cgb-cc-by-nc-sa {
-	margin: 0 auto;
-	max-width: 740px;
-	padding: 1rem;
+ .cc-cgb-richtext-input {
+    margin-bottom: 10px;
+
+    .wp-block {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 10px;
+        background-color: #f9f9f9; 
+    }
+
+    h4 {
+        margin-bottom: 10px;
+        font-size: 18px;
+    }
+
+    // Customize the RichText components
+    .cc-cgb-name, .cc-cgb-text {
+        border: 1px solid #ccc;
+        padding: 5px;
+        border-radius: 3px;
+        transition: border-color 0.3s;
+
+        &:focus {
+            border-color: #007cba; 
+            outline: none; 
+        }
+    }
 }

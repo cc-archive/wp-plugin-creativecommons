@@ -1,10 +1,9 @@
 import './style.scss';
 import './editor.scss';
-import globals from 'cgbGlobal';
+import globals from 'ccGlobal'; // Updated global namespace
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
-const { InspectorControls, PanelColorSettings } = wp.blockEditor; // Import color settings from wp.editor
-const { RichText } = wp.blockEditor; // Import RichText blocks from wp.editor
+const { InspectorControls, PanelColorSettings, RichText } = wp.blockEditor; // Import from wp.blockEditor
 
 /**
  * Register: CC-BY-NC Gutenberg block.
@@ -19,7 +18,7 @@ const { RichText } = wp.blockEditor; // Import RichText blocks from wp.editor
  * @return {?WPBlock}          The block, if it has been successfully
  *                             registered; otherwise `undefined`.
  */
-registerBlockType('cgb/cc-by-nc', {
+registerBlockType('cc/cc-by-nc', { // Updated namespace
 	title: __('CC-BY-NC'),
 	icon: 'media-text',
 	category: 'cc-licenses',
@@ -34,11 +33,11 @@ registerBlockType('cgb/cc-by-nc', {
 			default: 'black'
 		},
 		contentName: {
-			selector: '.cc-cgb-name',
+			selector: '.cc-c-name', // Updated selector for new namespace
 			source: 'children'
 		},
 		contentText: {
-			selector: '.cc-cgb-text',
+			selector: '.cc-c-text', // Updated selector for new namespace
 			source: 'children'
 		}
 	},
@@ -58,7 +57,7 @@ registerBlockType('cgb/cc-by-nc', {
 		const txtColor = props.attributes.txtColor;
 		const contentName = props.attributes.contentName;
 		const contentText = props.attributes.contentText;
-		const { attributes: className, setAttributes } = props;
+		const { className, setAttributes } = props;
 
 		const onChangeContentName = contentName => {
 			setAttributes({ contentName });
@@ -75,12 +74,12 @@ registerBlockType('cgb/cc-by-nc', {
 						{
 							label: __('Background Color'),
 							value: bgColor,
-							onChange: colorValue => props.setAttributes({ bgColor: colorValue })
+							onChange: colorValue => setAttributes({ bgColor: colorValue })
 						},
 						{
 							label: __('Text Color'),
 							value: txtColor,
-							onChange: colorValue => props.setAttributes({ txtColor: colorValue })
+							onChange: colorValue => setAttributes({ txtColor: colorValue })
 						}
 					]}
 				/>
@@ -98,7 +97,7 @@ registerBlockType('cgb/cc-by-nc', {
 				<span>
 					Attribution name <i>(default: This content)</i>:
 				</span>
-				<div className="cc-cgb-richtext-input">
+				<div className="cc-c-richtext-input"> {/* Updated class name */}
 					<RichText
 						className={className}
 						placeholder={__('This content', 'CreativeCommons')}
@@ -111,7 +110,7 @@ registerBlockType('cgb/cc-by-nc', {
 					<br />
 					Additional text <i>(optional)</i>:
 				</span>
-				<div className="cc-cgb-richtext-input">
+				<div className="cc-c-richtext-input"> {/* Updated class name */}
 					<RichText
 						className={className}
 						placeholder={__('Custom text/description/links ', 'CreativeCommons')}
@@ -140,18 +139,18 @@ registerBlockType('cgb/cc-by-nc', {
 		let contentName = props.attributes.contentName;
 		const contentText = props.attributes.contentText;
 
-		if (contentName == '') {
+		if (contentName === '') {
 			contentName = 'This content'; // Default to "This Content".
 		}
 		return (
 			<div className="message-body" style={{ backgroundColor: bgColor, color: txtColor }}>
 				<img src={`${globals.pluginDirUrl}includes/images/by-nc.png`} alt="CC-BY-NC" width="88" height="31" />
 				<p>
-					<span className="cc-cgb-name">{contentName}</span> is licensed under a{' '}
+					<span className="cc-c-name">{contentName}</span> is licensed under a{' '} {/* Updated class name */}
 					<a href="https://creativecommons.org/licenses/by-nc/4.0" rel="license">
 						Creative Commons Attribution-NonCommercial 4.0 International license.
 					</a>{' '}
-					<span className="cc-cgb-text">{contentText}</span>
+					<span className="cc-c-text">{contentText}</span> {/* Updated class name */}
 				</p>
 			</div>
 		);

@@ -1,10 +1,10 @@
 import './style.scss';
 import './editor.scss';
-import globals from 'cgbGlobal';
+import globals from 'cgbGlobal'; // You might want to replace this if you have a new globals setup.
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
-const { InspectorControls, PanelColorSettings } = wp.blockEditor; // Import color settings from wp.editor
-const { RichText } = wp.blockEditor; // Import RichText blocks from wp.editor
+const { InspectorControls, PanelColorSettings } = wp.blockEditor; // Import color settings from wp.blockEditor
+const { RichText } = wp.blockEditor; // Import RichText blocks from wp.blockEditor
 
 /**
  * Register: CC-BY-NC-SA Gutenberg block.
@@ -19,7 +19,7 @@ const { RichText } = wp.blockEditor; // Import RichText blocks from wp.editor
  * @return {?WPBlock}          The block, if it has been successfully
  *                             registered; otherwise `undefined`.
  */
-registerBlockType('cgb/cc-by-nc-sa', {
+registerBlockType('cc/cc-by-nc-sa', { // Changed from 'cgb/cc-by-nc-sa' to 'cc/cc-by-nc-sa'
 	title: __('CC-BY-NC-SA'),
 	icon: 'media-text',
 	category: 'cc-licenses',
@@ -34,11 +34,11 @@ registerBlockType('cgb/cc-by-nc-sa', {
 			default: 'black'
 		},
 		contentName: {
-			selector: '.cc-cgb-name',
+			selector: '.cc-cgb-name', // Retained existing selector
 			source: 'children'
 		},
 		contentText: {
-			selector: '.cc-cgb-text',
+			selector: '.cc-cgb-text', // Retained existing selector
 			source: 'children'
 		}
 	},
@@ -140,7 +140,7 @@ registerBlockType('cgb/cc-by-nc-sa', {
 		let contentName = props.attributes.contentName;
 		const contentText = props.attributes.contentText;
 
-		if (contentName == '') {
+		if (contentName === '') {
 			contentName = 'This content'; // Default to "This Content".
 		}
 		return (

@@ -4,8 +4,45 @@
  * CSS for both Frontend+Backend.
  */
 
-.wp-block-cgb-cc-by-nc-sa {
-	margin: 0 auto;
-	max-width: 740px;
-	padding: 1rem;
-}
+
+ $bgColor: white; 
+ $txtColor: black;
+ $linkColor: blue;
+ 
+ .message-body {
+	 padding: 20px;
+	 border-radius: 5px;
+	 border: 1px solid #ccc;
+	 background-color: $bgColor; 
+	 color: $txtColor; 
+	 text-align: center;
+ 
+	 img {
+		 margin-bottom: 10px;
+		 width: 88px; 
+		 height: 31px; 
+	 }
+ 
+	 p {
+		 margin: 0;
+		 font-size: 16px;
+ 
+		 a {
+			 color: $linkColor;
+			 text-decoration: underline;
+ 
+			 &:hover {
+				 text-decoration: none;
+			 }
+		 }
+	 }
+ 
+	 .cc-cgb-name {
+		 font-weight: bold;
+	 }
+ 
+	 .cc-cgb-text {
+		 font-style: italic;
+	 }
+ }
+ 

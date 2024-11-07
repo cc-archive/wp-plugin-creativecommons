@@ -4,8 +4,27 @@
  * CSS for both Frontend+Backend.
  */
 
-.wp-block-cgb-cc-by-nc {
-	margin: 0 auto;
-	max-width: 740px;
-	padding: 1rem;
+ .wp-block-cc-cc-by-nc {
+    margin: 0 auto;
+    max-width: 740px;
+    padding: 1rem;
+
+    // Additional front-end styles can be added here
+    img {
+        display: block;
+        margin: 0 auto 1rem;
+    }
+
+    p {
+        line-height: 1.5;
+    }
+    
+    .cc-c-name {
+        font-weight: bold;
+    }
+
+    .cc-c-text {
+        color: gray; // Optional: Different color for additional text
+    }
 }
+

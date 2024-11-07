@@ -1,159 +1,135 @@
+// Import necessary styles
 import './style.scss';
 import './editor.scss';
+
+// Use globals for plugin directory URL
 import globals from 'cgbGlobal';
-const { __ } = wp.i18n; // Import __() from wp.i18n
-const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
-const { InspectorControls, PanelColorSettings } = wp.blockEditor; // Import color settings from wp.editor
-const { RichText } = wp.blockEditor; // Import RichText blocks from wp.editor
+
+// Import necessary WordPress packages
+const { __ } = wp.i18n; // Internationalization
+const { registerBlockType } = wp.blocks; // Block registration
+const { InspectorControls, PanelColorSettings } = wp.blockEditor; // Inspector controls for block settings
+const { RichText } = wp.blockEditor; // RichText for editable content
 
 /**
  * Register: CC-BY-ND Gutenberg block.
- *
- * Registers a new block provided a unique name and an object defining its
- * behavior. Once registered, the block is made editor as an option to any
- * editor interface where blocks are implemented.
- *
- * @link https://wordpress.org/gutenberg/handbook/block-api/
- * @param  {string}   name     Block name.
- * @param  {Object}   settings Block settings.
- * @return {?WPBlock}          The block, if it has been successfully
- *                             registered; otherwise `undefined`.
  */
-registerBlockType('cgb/cc-by-nd', {
-	title: __('CC-BY-ND'),
-	icon: 'media-text',
-	category: 'cc-licenses',
-	keywords: [__('creative commons'), __('CC-BY-ND'), __('nd')],
-	attributes: {
-		bgColor: {
-			type: 'string',
-			default: 'white'
-		},
-		txtColor: {
-			type: 'string',
-			default: 'black'
-		},
-		contentName: {
-			selector: '.cc-cgb-name',
-			source: 'children'
-		},
-		contentText: {
-			selector: '.cc-cgb-text',
-			source: 'children'
-		}
-	},
+registerBlockType('cc/cc-by-nd', {
+    title: __('CC-BY-ND', 'creativecommons'),
+    icon: 'media-text',
+    category: 'cc-licenses',
+    keywords: [__('creative commons', 'creativecommons'), __('CC-BY-ND', 'creativecommons'), __('nd', 'creativecommons')],
+    attributes: {
+        bgColor: {
+            type: 'string',
+            default: 'white'
+        },
+        txtColor: {
+            type: 'string',
+            default: 'black'
+        },
+        contentName: {
+            selector: '.cc-cgb-name',
+            source: 'children'
+        },
+        contentText: {
+            selector: '.cc-cgb-text',
+            source: 'children'
+        }
+    },
 
-	/**
-	 * The edit function describes the structure of your block in the context of the editor.
-	 * This represents what the editor will render when the block is used.
-	 *
-	 * The "edit" property must be a valid function.
-	 *
-	 * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
-	 * @param {Object} props Props.
-	 * @returns {Mixed} JSX Component.
-	 */
-	edit: function(props) {
-		const bgColor = props.attributes.bgColor;
-		const txtColor = props.attributes.txtColor;
-		const contentName = props.attributes.contentName;
-		const contentText = props.attributes.contentText;
-		const { attributes: className, setAttributes } = props;
+    /**
+     * The edit function describes the structure of your block in the context of the editor.
+     */
+    edit: function (props) {
+        const { attributes, setAttributes, className } = props;
+        const { bgColor, txtColor, contentName, contentText } = attributes;
 
-		const onChangeContentName = contentName => {
-			setAttributes({ contentName });
-		};
-		const onChangeContentText = contentText => {
-			setAttributes({ contentText });
-		};
+        const onChangeContentName = (newContentName) => {
+            setAttributes({ contentName: newContentName });
+        };
 
-		return [
-			<InspectorControls key="3">
-				<PanelColorSettings
-					title={__('Color Settings', 'creativecommons')}
-					colorSettings={[
-						{
-							label: __('Background Color'),
-							value: bgColor,
-							onChange: colorValue => props.setAttributes({ bgColor: colorValue })
-						},
-						{
-							label: __('Text Color'),
-							value: txtColor,
-							onChange: colorValue => props.setAttributes({ txtColor: colorValue })
-						}
-					]}
-				/>
-			</InspectorControls>,
+        const onChangeContentText = (newContentText) => {
+            setAttributes({ contentText: newContentText });
+        };
 
-			<div key="2" className={className} style={{ backgroundColor: bgColor, color: txtColor }}>
-				<img src={`${globals.pluginDirUrl}includes/images/by-nd.png`} alt="CC-BY-ND" width="88" height="31" />
-				<p>
-					This content is licensed by{' '}
-					<a href="https://creativecommons.org/licenses/by-nd/4.0/" rel="license">
-						Creative Commons Attribution-NoDerivatives 4.0 International license.
-					</a>
-				</p>
-				<h4>Edit</h4>
-				<span>
-					Attribution name <i>(default: This content)</i>:
-				</span>
-				<div className="cc-cgb-richtext-input">
-					<RichText
-						className={className}
-						placeholder={__('This content', 'CreativeCommons')}
-						keepPlaceholderOnFocus={true}
-						onChange={onChangeContentName}
-						value={contentName}
-					/>
-				</div>
-				<span>
-					<br />
-					Additional text <i>(optional)</i>:
-				</span>
-				<div className="cc-cgb-richtext-input">
-					<RichText
-						className={className}
-						placeholder={__('Custom text/description/links ', 'CreativeCommons')}
-						keepPlaceholderOnFocus={true}
-						onChange={onChangeContentText}
-						value={contentText}
-					/>
-				</div>
-			</div>
-		];
-	},
+        return (
+            <>
+                <InspectorControls>
+                    <PanelColorSettings
+                        title={__('Color Settings', 'creativecommons')}
+                        colorSettings={[
+                            {
+                                label: __('Background Color', 'creativecommons'),
+                                value: bgColor,
+                                onChange: (colorValue) => setAttributes({ bgColor: colorValue })
+                            },
+                            {
+                                label: __('Text Color', 'creativecommons'),
+                                value: txtColor,
+                                onChange: (colorValue) => setAttributes({ txtColor: colorValue })
+                            }
+                        ]}
+                    />
+                </InspectorControls>
 
-	/**
-	 * The save function defines the way in which the different attributes should be combined
-	 * into the final markup, which is then serialized by Gutenberg into post_content.
-	 *
-	 * The "save" property must be specified and must be a valid function.
-	 *
-	 * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
-	 * @param {Object} props Props.
-	 * @returns {Mixed} JSX Frontend HTML.
-	 */
-	save: function(props) {
-		const bgColor = props.attributes.bgColor;
-		const txtColor = props.attributes.txtColor;
-		let contentName = props.attributes.contentName;
-		const contentText = props.attributes.contentText;
+                <div className={className} style={{ backgroundColor: bgColor, color: txtColor }}>
+                    <img src={`${globals.pluginDirUrl}includes/images/by-nd.png`} alt="CC-BY-ND" width="88" height="31" />
+                    <p>
+                        This content is licensed by{' '}
+                        <a href="https://creativecommons.org/licenses/by-nd/4.0/" rel="license">
+                            Creative Commons Attribution-NoDerivatives 4.0 International license.
+                        </a>
+                    </p>
+                    <h4>Edit</h4>
+                    <span>
+                        Attribution name <i>(default: This content)</i>:
+                    </span>
+                    <div className="cc-cgb-richtext-input">
+                        <RichText
+                            className={className}
+                            placeholder={__('This content', 'CreativeCommons')}
+                            keepPlaceholderOnFocus={true}
+                            onChange={onChangeContentName}
+                            value={contentName}
+                        />
+                    </div>
+                    <span>
+                        <br />
+                        Additional text <i>(optional)</i>:
+                    </span>
+                    <div className="cc-cgb-richtext-input">
+                        <RichText
+                            className={className}
+                            placeholder={__('Custom text/description/links', 'CreativeCommons')}
+                            keepPlaceholderOnFocus={true}
+                            onChange={onChangeContentText}
+                            value={contentText}
+                        />
+                    </div>
+                </div>
+            </>
+        );
+    },
 
-		if (contentName == '') {
-			contentName = 'This content'; // Default to "This Content".
-		}
-		return (
-			<div className="message-body" style={{ backgroundColor: bgColor, color: txtColor }}>
-				<img src={`${globals.pluginDirUrl}includes/images/by-nd.png`} alt="CC-BY-ND" width="88" height="31" />
-				<p>
-					<span className="cc-cgb-name">{contentName}</span> is licensed under a{' '}
-					<a href="https://creativecommons.org/licenses/by-nd/4.0/" rel="license">
-						Creative Commons Attribution-NoDerivatives 4.0 International license.
-					</a>{' '}
-					<span className="cc-cgb-text">{contentText}</span>
-				</p>
-			</div>
-		);
-	}
+    /**
+     * The save function defines the final markup for the block.
+     */
+    save: function (props) {
+        const { bgColor, txtColor, contentName, contentText } = props.attributes;
+        const finalContentName = contentName || __('This content', 'creativecommons'); // Default value
+
+        return (
+            <div className="message-body" style={{ backgroundColor: bgColor, color: txtColor }}>
+                <img src={`${globals.pluginDirUrl}includes/images/by-nd.png`} alt="CC-BY-ND" width="88" height="31" />
+                <p>
+                    <span className="cc-cgb-name">{finalContentName}</span> is licensed under a{' '}
+                    <a href="https://creativecommons.org/licenses/by-nd/4.0/" rel="license">
+                        Creative Commons Attribution-NoDerivatives 4.0 International license.
+                    </a>{' '}
+                    <span className="cc-cgb-text">{contentText}</span>
+                </p>
+            </div>
+        );
+    }
 });

@@ -3,14 +3,14 @@ import './editor.scss';
 import globals from 'cgbGlobal';
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
-const { InspectorControls, PanelColorSettings } = wp.blockEditor; // Import color settings from wp.editor
-const { RichText } = wp.blockEditor; // Import RichText blocks from wp.editor
+const { InspectorControls, PanelColorSettings } = wp.blockEditor; // Import color settings from wp.blockEditor
+const { RichText } = wp.blockEditor; // Import RichText from wp.blockEditor
 
 /**
  * Register: CC-BY-NC-ND Gutenberg block.
  *
  * Registers a new block provided a unique name and an object defining its
- * behavior. Once registered, the block is made editor as an option to any
+ * behavior. Once registered, the block is made available as an option to any
  * editor interface where blocks are implemented.
  *
  * @link https://wordpress.org/gutenberg/handbook/block-api/
@@ -19,8 +19,8 @@ const { RichText } = wp.blockEditor; // Import RichText blocks from wp.editor
  * @return {?WPBlock}          The block, if it has been successfully
  *                             registered; otherwise `undefined`.
  */
-registerBlockType('cgb/cc-by-nc-nd', {
-	title: __('CC-BY-NC-ND'),
+registerBlockType('cc/cc-by-nc-nd', { // Updated namespace
+	title: __('CC-BY-NC-ND', 'creativecommons'),
 	icon: 'media-text',
 	category: 'cc-licenses',
 	keywords: [__('creative commons'), __('CC-BY-NC-ND'), __('nc nd')],
@@ -54,39 +54,37 @@ registerBlockType('cgb/cc-by-nc-nd', {
 	 * @returns {Mixed} JSX Component.
 	 */
 	edit: function(props) {
-		const bgColor = props.attributes.bgColor;
-		const txtColor = props.attributes.txtColor;
-		const contentName = props.attributes.contentName;
-		const contentText = props.attributes.contentText;
-		const { attributes: className, setAttributes } = props;
+		const { bgColor, txtColor, contentName, contentText } = props.attributes;
+		const { className, setAttributes } = props;
 
-		const onChangeContentName = contentName => {
-			setAttributes({ contentName });
+		const onChangeContentName = newContentName => {
+			setAttributes({ contentName: newContentName });
 		};
-		const onChangeContentText = contentText => {
-			setAttributes({ contentText });
+
+		const onChangeContentText = newContentText => {
+			setAttributes({ contentText: newContentText });
 		};
 
 		return [
-			<InspectorControls key="3">
+			<InspectorControls key="controls">
 				<PanelColorSettings
 					title={__('Color Settings', 'creativecommons')}
 					colorSettings={[
 						{
-							label: __('Background Color'),
+							label: __('Background Color', 'creativecommons'),
 							value: bgColor,
-							onChange: colorValue => props.setAttributes({ bgColor: colorValue })
+							onChange: colorValue => setAttributes({ bgColor: colorValue })
 						},
 						{
-							label: __('Text Color'),
+							label: __('Text Color', 'creativecommons'),
 							value: txtColor,
-							onChange: colorValue => props.setAttributes({ txtColor: colorValue })
+							onChange: colorValue => setAttributes({ txtColor: colorValue })
 						}
 					]}
 				/>
 			</InspectorControls>,
 
-			<div key="2" className={className} style={{ backgroundColor: bgColor, color: txtColor }}>
+			<div key="block" className={className} style={{ backgroundColor: bgColor, color: txtColor }}>
 				<img src={`${globals.pluginDirUrl}includes/images/by-nc-nd.png`} alt="CC-BY-NC-ND" width="88" height="31" />
 				<p>
 					This content is licensed by{' '}
@@ -94,14 +92,14 @@ registerBlockType('cgb/cc-by-nc-nd', {
 						Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International license.
 					</a>
 				</p>
-				<h4>Edit</h4>
+				<h4>{__('Edit', 'creativecommons')}</h4>
 				<span>
-					Attribution name <i>(default: This content)</i>:
+					{__('Attribution name (default: This content):', 'creativecommons')}
 				</span>
 				<div className="cc-cgb-richtext-input">
 					<RichText
 						className={className}
-						placeholder={__('This content', 'CreativeCommons')}
+						placeholder={__('This content', 'creativecommons')}
 						keepPlaceholderOnFocus={true}
 						onChange={onChangeContentName}
 						value={contentName}
@@ -109,12 +107,12 @@ registerBlockType('cgb/cc-by-nc-nd', {
 				</div>
 				<span>
 					<br />
-					Additional text <i>(optional)</i>:
+					{__('Additional text (optional):', 'creativecommons')}
 				</span>
 				<div className="cc-cgb-richtext-input">
 					<RichText
 						className={className}
-						placeholder={__('Custom text/description/links ', 'CreativeCommons')}
+						placeholder={__('Custom text/description/links', 'creativecommons')}
 						keepPlaceholderOnFocus={true}
 						onChange={onChangeContentText}
 						value={contentText}
@@ -125,7 +123,7 @@ registerBlockType('cgb/cc-by-nc-nd', {
 	},
 
 	/**
-	 * The save function defines the way in which the different attributes should be combined
+	 * The save function defines how the different attributes should be combined
 	 * into the final markup, which is then serialized by Gutenberg into post_content.
 	 *
 	 * The "save" property must be specified and must be a valid function.
@@ -135,19 +133,15 @@ registerBlockType('cgb/cc-by-nc-nd', {
 	 * @returns {Mixed} JSX Frontend HTML.
 	 */
 	save: function(props) {
-		const bgColor = props.attributes.bgColor;
-		const txtColor = props.attributes.txtColor;
-		let contentName = props.attributes.contentName;
-		const contentText = props.attributes.contentText;
+		const { bgColor, txtColor, contentName, contentText } = props.attributes;
 
-		if (contentName == '') {
-			contentName = 'This content'; // Default to "This Content".
-		}
+		const displayName = contentName || __('This content', 'creativecommons'); // Default to "This Content"
+		
 		return (
 			<div className="message-body" style={{ backgroundColor: bgColor, color: txtColor }}>
 				<img src={`${globals.pluginDirUrl}includes/images/by-nc-nd.png`} alt="CC-BY-NC-ND" width="88" height="31" />
 				<p>
-					<span className="cc-cgb-name">{contentName}</span> is licensed under a{' '}
+					<span className="cc-cgb-name">{displayName}</span> is licensed under a{' '}
 					<a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="license">
 						Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International license.
 					</a>{' '}
