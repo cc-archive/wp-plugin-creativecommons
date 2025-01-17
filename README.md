@@ -1,3 +1,7 @@
+🚨 **Notice: This plugin is no longer maintained. Please see the [WordPress.org plugin directory](https://wordpress.org/plugins/) or the [Creative Commons Post Republisher](https://wordpress.org/plugins/cc-post-republisher/) plugin.**
+
+-----
+
 <div align="center">
 <img src="https://mirrors.creativecommons.org/presskit/icons/cc.xlarge.png" height="150">
 
