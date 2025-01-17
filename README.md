@@ -9,7 +9,7 @@
 <p align="center">Official Creative Commons plugin for licensing your content on your WordPress website. With Creative Commons licenses, keep your copyright and share your creativity.
 </p>
 
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html) [![CalVer Format: YYYY.0M.Micro](https://img.shields.io/badge/calver-YYYY.0M.MICRO-22bfda.svg)](https://calver.org/)
+[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html) [![CalVer Format: YYYY.0M.Micro](https://img.shields.io/badge/calver-YYYY.0M.MICRO-22bfda.svg)](https://calver.org/)
 
 </div>
 
@@ -45,7 +45,7 @@ includes default, post, page and media attribution.
 Download the latest version from this project's [releases][releases]. You can
 install the plugin to your WP website using any of these methods:
 
-[releases]: https://github.com/creativecommons/creativecommons-wordpress-plugin/releases "Releases · creativecommons/creativecommons-wordpress-plugin"
+[releases]: https://github.com/cc-arxhive/creativecommons-wordpress-plugin/releases "Releases · cc-archive/creativecommons-wordpress-plugin"
 
 1. In your plugin Dashboard on WordPress, Click **Add New** and upload the
    plugin `.zip` file. When installed, activate the plugin.
@@ -132,10 +132,10 @@ At a glance, with WP CC Plugin you can:
 
 ## Release Schedule
 
-We will release a new version every month that there are substantial changes.
-See [milestones][milestones] for how GitHub issues are assigned for release.
+~~We will release a new version every month that there are substantial changes.
+See [milestones][milestones] for how GitHub issues are assigned for release.~~
 
-[milestones]: https://github.com/creativecommons/wp-plugin-creativecommons/milestones
+[milestones]: https://github.com/cc-archive/wp-plugin-creativecommons/milestones
 
 
 ## License
@@ -177,25 +177,25 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://cog.dog/"><img src="https://avatars.githubusercontent.com/u/463038?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Alan Levine</b></sub></a><br /><a href="https://github.com/creativecommons/wp-plugin-creativecommons/commits?author=cogdog" title="Code">💻</a></td>
-    <td align="center"><a href="http://linkedin.com/in/brylie-christopher-oxley/"><img src="https://avatars.githubusercontent.com/u/17307?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Brylie Christopher Oxley</b></sub></a><br /><a href="https://github.com/creativecommons/wp-plugin-creativecommons/commits?author=brylie" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/vestigialcode"><img src="https://avatars.githubusercontent.com/u/54473532?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Dibyajiban Sahoo</b></sub></a><br /><a href="https://github.com/creativecommons/wp-plugin-creativecommons/commits?author=vestigialcode" title="Documentation">📖</a></td>
-    <td align="center"><a href="http://hugo.solar"><img src="https://avatars.githubusercontent.com/u/894708?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Hugo Solar</b></sub></a><br /><a href="https://github.com/creativecommons/wp-plugin-creativecommons/commits?author=hugosolar" title="Code">💻</a> <a href="https://github.com/creativecommons/wp-plugin-creativecommons/pulls?q=is%3Apr+reviewed-by%3Ahugosolar" title="Reviewed Pull Requests">👀</a></td>
-    <td align="center"><a href="https://github.com/kusinkay"><img src="https://avatars.githubusercontent.com/u/1234511?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Juane Puig</b></sub></a><br /><a href="https://github.com/creativecommons/wp-plugin-creativecommons/commits?author=kusinkay" title="Code">💻</a></td>
+    <td align="center"><a href="https://cog.dog/"><img src="https://avatars.githubusercontent.com/u/463038?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Alan Levine</b></sub></a><br /><a href="https://github.com/cc-archive/wp-plugin-creativecommons/commits?author=cogdog" title="Code">💻</a></td>
+    <td align="center"><a href="http://linkedin.com/in/brylie-christopher-oxley/"><img src="https://avatars.githubusercontent.com/u/17307?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Brylie Christopher Oxley</b></sub></a><br /><a href="https://github.com/cc-archive/wp-plugin-creativecommons/commits?author=brylie" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/vestigialcode"><img src="https://avatars.githubusercontent.com/u/54473532?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Dibyajiban Sahoo</b></sub></a><br /><a href="https://github.com/cc-archive/wp-plugin-creativecommons/commits?author=vestigialcode" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://hugo.solar"><img src="https://avatars.githubusercontent.com/u/894708?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Hugo Solar</b></sub></a><br /><a href="https://github.com/cc-archive/wp-plugin-creativecommons/commits?author=hugosolar" title="Code">💻</a> <a href="https://github.com/cc-archive/wp-plugin-creativecommons/pulls?q=is%3Apr+reviewed-by%3Ahugosolar" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="https://github.com/kusinkay"><img src="https://avatars.githubusercontent.com/u/1234511?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Juane Puig</b></sub></a><br /><a href="https://github.com/cc-archive/wp-plugin-creativecommons/commits?author=kusinkay" title="Code">💻</a></td>
     <td align="center"><a href="http://kritigodey.com"><img src="https://avatars.githubusercontent.com/u/287034?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Kriti Godey</b></sub></a><br /><a href="#projectManagement-kgodey" title="Project Management">📆</a></td>
-    <td align="center"><a href="https://bight.dev"><img src="https://avatars.githubusercontent.com/u/605361?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ned Zimmerman</b></sub></a><br /><a href="https://github.com/creativecommons/wp-plugin-creativecommons/commits?author=greatislander" title="Code">💻</a></td>
+    <td align="center"><a href="https://bight.dev"><img src="https://avatars.githubusercontent.com/u/605361?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ned Zimmerman</b></sub></a><br /><a href="https://github.com/cc-archive/wp-plugin-creativecommons/commits?author=greatislander" title="Code">💻</a></td>
   </tr>
   <tr>
-    <td align="center"><a href="http://www.nishantwrp.com"><img src="https://avatars.githubusercontent.com/u/36989112?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nishant Mittal</b></sub></a><br /><a href="https://github.com/creativecommons/wp-plugin-creativecommons/commits?author=nishantwrp" title="Documentation">📖</a></td>
-    <td align="center"><a href="https://github.com/cillacode"><img src="https://avatars.githubusercontent.com/u/54538525?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Priscillia Umeakuekwe</b></sub></a><br /><a href="https://github.com/creativecommons/wp-plugin-creativecommons/commits?author=cillacode" title="Documentation">📖</a></td>
-    <td align="center"><a href="https://github.com/rczajka"><img src="https://avatars.githubusercontent.com/u/264402?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Radek Czajka</b></sub></a><br /><a href="https://github.com/creativecommons/wp-plugin-creativecommons/commits?author=rczajka" title="Code">💻</a></td>
-    <td align="center"><a href="https://rajeshroyal.com"><img src="https://avatars.githubusercontent.com/u/24524924?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Rajesh Royal</b></sub></a><br /><a href="#translation-Rajesh-Royal" title="Translation">🌍</a> <a href="https://github.com/creativecommons/wp-plugin-creativecommons/commits?author=Rajesh-Royal" title="Code">💻</a></td>
-    <td align="center"><a href="http://rhea.art/"><img src="https://avatars.githubusercontent.com/u/21746?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Rhea Myers</b></sub></a><br /><a href="https://github.com/creativecommons/wp-plugin-creativecommons/commits?author=rheaplex" title="Code">💻</a></td>
-    <td align="center"><a href="https://www.thecrowned.org"><img src="https://avatars.githubusercontent.com/u/7880569?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Stefano Ottolenghi</b></sub></a><br /><a href="https://github.com/creativecommons/wp-plugin-creativecommons/commits?author=TheCrowned" title="Code">💻</a></td>
-    <td align="center"><a href="https://zehta.me/"><img src="https://avatars.githubusercontent.com/u/691322?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Timid Robot Zehta</b></sub></a><br /><a href="https://github.com/creativecommons/wp-plugin-creativecommons/pulls?q=is%3Apr+reviewed-by%3ATimidRobot" title="Reviewed Pull Requests">👀</a> <a href="#projectManagement-TimidRobot" title="Project Management">📆</a></td>
+    <td align="center"><a href="http://www.nishantwrp.com"><img src="https://avatars.githubusercontent.com/u/36989112?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nishant Mittal</b></sub></a><br /><a href="https://github.com/cc-archive/wp-plugin-creativecommons/commits?author=nishantwrp" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/cillacode"><img src="https://avatars.githubusercontent.com/u/54538525?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Priscillia Umeakuekwe</b></sub></a><br /><a href="https://github.com/cc-archive/wp-plugin-creativecommons/commits?author=cillacode" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/rczajka"><img src="https://avatars.githubusercontent.com/u/264402?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Radek Czajka</b></sub></a><br /><a href="https://github.com/cc-archive/wp-plugin-creativecommons/commits?author=rczajka" title="Code">💻</a></td>
+    <td align="center"><a href="https://rajeshroyal.com"><img src="https://avatars.githubusercontent.com/u/24524924?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Rajesh Royal</b></sub></a><br /><a href="#translation-Rajesh-Royal" title="Translation">🌍</a> <a href="https://github.com/cc-archive/wp-plugin-creativecommons/commits?author=Rajesh-Royal" title="Code">💻</a></td>
+    <td align="center"><a href="http://rhea.art/"><img src="https://avatars.githubusercontent.com/u/21746?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Rhea Myers</b></sub></a><br /><a href="https://github.com/cc-archive/wp-plugin-creativecommons/commits?author=rheaplex" title="Code">💻</a></td>
+    <td align="center"><a href="https://www.thecrowned.org"><img src="https://avatars.githubusercontent.com/u/7880569?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Stefano Ottolenghi</b></sub></a><br /><a href="https://github.com/cc-archive/wp-plugin-creativecommons/commits?author=TheCrowned" title="Code">💻</a></td>
+    <td align="center"><a href="https://zehta.me/"><img src="https://avatars.githubusercontent.com/u/691322?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Timid Robot Zehta</b></sub></a><br /><a href="https://github.com/cc-archive/wp-plugin-creativecommons/pulls?q=is%3Apr+reviewed-by%3ATimidRobot" title="Reviewed Pull Requests">👀</a> <a href="#projectManagement-TimidRobot" title="Project Management">📆</a></td>
   </tr>
   <tr>
-    <td align="center"><a href="https://github.com/zhaofeng-shu33"><img src="https://avatars.githubusercontent.com/u/23316477?v=4?s=100" width="100px;" alt=""/><br /><sub><b>赵丰 (Zhao Feng)</b></sub></a><br /><a href="https://github.com/creativecommons/wp-plugin-creativecommons/commits?author=zhaofeng-shu33" title="Documentation">📖</a> <a href="#translation-zhaofeng-shu33" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://github.com/zhaofeng-shu33"><img src="https://avatars.githubusercontent.com/u/23316477?v=4?s=100" width="100px;" alt=""/><br /><sub><b>赵丰 (Zhao Feng)</b></sub></a><br /><a href="https://github.com/cc-archive/wp-plugin-creativecommons/commits?author=zhaofeng-shu33" title="Documentation">📖</a> <a href="#translation-zhaofeng-shu33" title="Translation">🌍</a></td>
   </tr>
 </table>
 
