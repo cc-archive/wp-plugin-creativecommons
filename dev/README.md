@@ -34,4 +34,4 @@
   (Includes links to additional deployment methods and software)
 
 [wordpress-svn]: https://developer.wordpress.org/plugins/wordpress-org/how-to-use-subversion/
-[issue78]: https://github.com/creativecommons/wp-plugin-creativecommons/issues/78
+[issue78]: https://github.com/cc-archive/wp-plugin-creativecommons/issues/78

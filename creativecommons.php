@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Creative Commons
- * Plugin URI: https://github.com/creativecommons/wp-plugin-creativecommons
+ * Plugin URI: https://github.com/cc-archive/wp-plugin-creativecommons
  * Description: Official Creative Commons plugin for licensing your content. With Creative Commons licenses, keep your copyright AND share your creativity.
  * Version: 2022.09.1
  * Author: Ahmad Bilal <https://ahmadbilal.dev>, Bjorn Wijers <burobjorn@burobjorn.nl>, Tarmo Toikkanen <tarmo@iki.fi>, Matt Lee <mattl@creativecommons.org>, Rob Myers <rob@creativecommons.org>, Timid Robot Zehta

@@ -19,7 +19,7 @@ msgid "Creative Commons"
 msgstr ""
 
 #. Plugin URI of the plugin
-msgid "https://github.com/creativecommons/wp-plugin-creativecommons"
+msgid "https://github.com/cc-archive/wp-plugin-creativecommons"
 msgstr ""
 
 #. Description of the plugin

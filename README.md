@@ -45,7 +45,7 @@ includes default, post, page and media attribution.
 Download the latest version from this project's [releases][releases]. You can
 install the plugin to your WP website using any of these methods:
 
-[releases]: https://github.com/cc-arxhive/creativecommons-wordpress-plugin/releases "Releases · cc-archive/creativecommons-wordpress-plugin"
+[releases]: https://github.com/cc-archive/creativecommons-wordpress-plugin/releases "Releases · cc-archive/creativecommons-wordpress-plugin"
 
 1. In your plugin Dashboard on WordPress, Click **Add New** and upload the
    plugin `.zip` file. When installed, activate the plugin.

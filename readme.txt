@@ -46,7 +46,7 @@ The selected license can be displayed as a widget or a footer or both at the sam
 
 = Where can I find more information about the plugin? =
 
-See the GitHub project: [creativecommons/wp-plugin-creativecommons](https://github.com/cc-archive/wp-plugin-creativecommons)
+See the GitHub project: [cc-archive/wp-plugin-creativecommons](https://github.com/cc-archive/wp-plugin-creativecommons)
 
 
 == Screenshots ==
